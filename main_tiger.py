@@ -53,7 +53,6 @@ if __name__ == '__main__':
     num_T=3
     train_loss = dict()
     train_acc = dict()
-    # train_initial_model(args, train_loader,test_loader,args.epochs,device)
 
     for t in range(1, num_T):
         print(f'the model is num {t}')
@@ -63,12 +62,7 @@ if __name__ == '__main__':
         loss = MIL_Loss()
         train_loss[t], train_acc[t], model = train_advanced(model, train_loader, loss, optimizer, device, args.epochs)
         torch.save(model.state_dict(), f'models/model_{t}_weights_tiger.pkl')
-        print('\n\n\n\n')
+        print('\n')
 
         print(f'train loss for model {t}: {train_loss[t]}')
         print(f'train accuracy for model {t}: {train_acc[t]}')
-
-
-    # model_path = f'models/model_2_weights_tiger.pkl'
-    # print(f'model 0')
-    # print_result(test_loader_, device, model_path)
